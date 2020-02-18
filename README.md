@@ -8,3 +8,4 @@
 * Game physics are bad, graphisc are bad and programming the wasn't fun at all.
 * Understanding graphics card was just amazing.
 * As i learned how computer graphics and graphics card works, project was a success after all.
+* It can have the title of ugliest game ever in the history of computer games.

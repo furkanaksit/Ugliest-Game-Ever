@@ -1,0 +1,115 @@
+
+
+<HTML>
+<head>
+    <style>
+        body {
+            background-color: powderblue;
+        }
+
+        h1 {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 800px;
+            color: purple;
+        }
+
+        p {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 800px;
+            }
+        L {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            width: 800px;
+            }
+    </style>
+    
+    <script id="vertex-shader" type="x-shader/x-vertex">
+        precision mediump float;
+        attribute vec4 vPosition;
+
+        uniform vec2 mousePos;
+        uniform float angle;
+        uniform float xpos;
+
+        attribute vec3 vColor;
+        varying vec3 fColor;
+
+
+        void
+        main()
+        {
+        gl_PointSize = 1.0;
+
+        vec2 rp = mat2(cos(angle), -sin(angle), sin(angle), cos(angle)) * vPosition.xy;
+        gl_Position = vec4(rp.x+xpos, rp.y+mousePos.y, 0.0, 1.0) ;
+        fColor = vColor;
+        }
+    </script>
+    <script id="star-shader" type="x-shader/x-vertex">
+        precision mediump float;
+        attribute vec4 vPosition;
+
+        uniform vec2 mousePos;
+        uniform float starPos;
+        attribute vec3 vColor;
+        varying vec3 fColor;
+        uniform float angle;
+
+
+        void
+        main()
+        {
+        gl_PointSize = 1.0;
+        vec2 rp = mat2(cos(angle), -sin(angle), sin(angle), cos(angle)) * vPosition.xy;
+        gl_Position = vec4(rp.x+starPos, rp.y, 0.0, 1.0) ;
+        fColor = vColor;
+        }
+    </script>
+
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+
+        varying vec3 fColor;
+
+
+        void
+        main()
+        {
+        gl_FragColor = vec4(fColor, 1.0);
+        }
+    </script>
+
+    <script type="text/javascript" src="webgl-utils.js"></script>
+    <script type="text/javascript" src="initShaders.js"></script>
+    <script type="text/javascript" src="MV.js"></script>
+    <script type="text/javascript" src="code.js"></script>
+</head>
+
+<body>
+    <h1>METEORLARDAN KAÇIN</h1>
+    <p>
+        <canvas id="gl-canvas" width="512" height="512">
+            Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+
+    </p>
+    <L>
+
+        <Button id="start">Start</Button>
+    </L>
+</body>
+
+</HTML>
